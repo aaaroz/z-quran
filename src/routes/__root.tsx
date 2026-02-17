@@ -15,6 +15,7 @@ import LastReadFloat from '@/components/last-read-float'
 import Footer from '@/components/footer'
 import Header from '@/components/header'
 import { NotFoundComponent } from '@/components/not-found'
+import { TooltipProvider } from '@/components/ui/tooltip'
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
@@ -52,14 +53,16 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <DirectionProvider direction="rtl">
-          <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-            <div className="flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-              <LastReadFloat />
-            </div>
-          </ThemeProvider>
+          <TooltipProvider>
+            <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+              <div className="flex min-h-screen flex-col">
+                <Header />
+                <main className="flex-1">{children}</main>
+                <Footer />
+                <LastReadFloat />
+              </div>
+            </ThemeProvider>
+          </TooltipProvider>
         </DirectionProvider>
         <TanStackDevtools
           config={{

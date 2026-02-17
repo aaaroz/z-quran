@@ -14,6 +14,7 @@ import { cn } from '@/lib/utils'
 import { useBookmarkStore } from '@/stores/bookmark-store'
 import { useAudioStore } from '@/stores/audio-store'
 import { useLastReadStore } from '@/stores/last-read-store'
+import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
 
 const QARI_NAMES: Record<string, string> = {
   '01': 'Abdullah Al-Juhany',
@@ -65,25 +66,30 @@ const AyatItem = ({
         <div className="flex items-center gap-1">
           {audio && Object.keys(audio).length > 0 && (
             <Popover>
-              <PopoverTrigger>
-                <button
-                  className={`rounded-md p-2 transition-colors ${
-                    isAnyPlaying
-                      ? 'text-primary bg-primary/10'
-                      : 'text-muted-foreground/40 hover:text-primary'
-                  }`}
-                  aria-label="Putar audio"
-                >
-                  {isAnyPlaying ? (
-                    <HugeiconsIcon
-                      className="h-4 w-4 fill-current"
-                      icon={Square}
-                    />
-                  ) : (
-                    <HugeiconsIcon className="h-4 w-4" icon={Play} />
-                  )}
-                </button>
-              </PopoverTrigger>
+              <Tooltip>
+                <TooltipTrigger>
+                  <PopoverTrigger>
+                    <button
+                      className={`rounded-md p-2 transition-colors ${
+                        isAnyPlaying
+                          ? 'text-primary bg-primary/10'
+                          : 'text-muted-foreground/40 hover:text-primary'
+                      }`}
+                      aria-label="Putar audio"
+                    >
+                      {isAnyPlaying ? (
+                        <HugeiconsIcon
+                          className="h-4 w-4 fill-current"
+                          icon={Square}
+                        />
+                      ) : (
+                        <HugeiconsIcon className="h-4 w-4" icon={Play} />
+                      )}
+                    </button>
+                  </PopoverTrigger>
+                </TooltipTrigger>
+                <TooltipContent>Putar ayat #{nomorAyat}</TooltipContent>
+              </Tooltip>
               <PopoverContent className="w-56 p-2" align="end">
                 <p className="text-xs font-medium text-muted-foreground mb-2 px-2">
                   Pilih Qari
@@ -116,41 +122,54 @@ const AyatItem = ({
               </PopoverContent>
             </Popover>
           )}
-          <button
-            onClick={() =>
-              setLastRead({ surah: surahNomor, ayat: nomorAyat, surahName })
-            }
-            className={`rounded-md p-2 transition-colors ${
-              isLastRead
-                ? 'text-primary bg-primary/10'
-                : 'text-muted-foreground/40 hover:text-primary'
-            }`}
-            aria-label="Tandai terakhir dibaca"
-          >
-            <HugeiconsIcon className="size-4" icon={BookOpenCheck} />
-          </button>
-          <button
-            onClick={() =>
-              toggleBookmark({
-                surah: surahNomor,
-                ayat: nomorAyat,
-                surahName,
-                teksArab,
-                teksIndonesia,
-              })
-            }
-            className={`rounded-md p-2 transition-colors ${
-              bookmarked
-                ? 'text-primary bg-primary/10'
-                : 'text-muted-foreground/40 hover:text-primary'
-            }`}
-            aria-label={bookmarked ? 'Hapus bookmark' : 'Tambah bookmark'}
-          >
-            <HugeiconsIcon
-              className={cn('size-4', bookmarked ? 'fill-current' : '')}
-              icon={Bookmark}
-            />
-          </button>
+
+          <Tooltip>
+            <TooltipTrigger>
+              <button
+                onClick={() =>
+                  setLastRead({ surah: surahNomor, ayat: nomorAyat, surahName })
+                }
+                className={`rounded-md p-2 transition-colors ${
+                  isLastRead
+                    ? 'text-primary bg-primary/10'
+                    : 'text-muted-foreground/40 hover:text-primary'
+                }`}
+                aria-label="Tandai terakhir dibaca"
+              >
+                <HugeiconsIcon className="size-4" icon={BookOpenCheck} />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent>
+              Tandai ayat #{nomorAyat} sebagai terakhir dibaca
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger>
+              <button
+                onClick={() =>
+                  toggleBookmark({
+                    surah: surahNomor,
+                    ayat: nomorAyat,
+                    surahName,
+                    teksArab,
+                    teksIndonesia,
+                  })
+                }
+                className={`rounded-md p-2 transition-colors ${
+                  bookmarked
+                    ? 'text-primary bg-primary/10'
+                    : 'text-muted-foreground/40 hover:text-primary'
+                }`}
+                aria-label={bookmarked ? 'Hapus bookmark' : 'Tambah bookmark'}
+              >
+                <HugeiconsIcon
+                  className={cn('size-4', bookmarked ? 'fill-current' : '')}
+                  icon={Bookmark}
+                />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent>Tandai ayat #{nomorAyat}</TooltipContent>
+          </Tooltip>
         </div>
       </div>
       <p className="arabic-text text-right text-2xl leading-[2.4] text-foreground mb-4">
