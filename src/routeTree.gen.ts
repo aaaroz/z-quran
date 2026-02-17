@@ -9,38 +9,75 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as BookmarksRouteImport } from './routes/bookmarks'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TafsirNoRouteImport } from './routes/tafsir/$no'
+import { Route as SurahNoRouteImport } from './routes/surah/$no'
 
+const BookmarksRoute = BookmarksRouteImport.update({
+  id: '/bookmarks',
+  path: '/bookmarks',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TafsirNoRoute = TafsirNoRouteImport.update({
+  id: '/tafsir/$no',
+  path: '/tafsir/$no',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SurahNoRoute = SurahNoRouteImport.update({
+  id: '/surah/$no',
+  path: '/surah/$no',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bookmarks': typeof BookmarksRoute
+  '/surah/$no': typeof SurahNoRoute
+  '/tafsir/$no': typeof TafsirNoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bookmarks': typeof BookmarksRoute
+  '/surah/$no': typeof SurahNoRoute
+  '/tafsir/$no': typeof TafsirNoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bookmarks': typeof BookmarksRoute
+  '/surah/$no': typeof SurahNoRoute
+  '/tafsir/$no': typeof TafsirNoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/bookmarks' | '/surah/$no' | '/tafsir/$no'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/bookmarks' | '/surah/$no' | '/tafsir/$no'
+  id: '__root__' | '/' | '/bookmarks' | '/surah/$no' | '/tafsir/$no'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BookmarksRoute: typeof BookmarksRoute
+  SurahNoRoute: typeof SurahNoRoute
+  TafsirNoRoute: typeof TafsirNoRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/bookmarks': {
+      id: '/bookmarks'
+      path: '/bookmarks'
+      fullPath: '/bookmarks'
+      preLoaderRoute: typeof BookmarksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +85,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tafsir/$no': {
+      id: '/tafsir/$no'
+      path: '/tafsir/$no'
+      fullPath: '/tafsir/$no'
+      preLoaderRoute: typeof TafsirNoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/surah/$no': {
+      id: '/surah/$no'
+      path: '/surah/$no'
+      fullPath: '/surah/$no'
+      preLoaderRoute: typeof SurahNoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BookmarksRoute: BookmarksRoute,
+  SurahNoRoute: SurahNoRoute,
+  TafsirNoRoute: TafsirNoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

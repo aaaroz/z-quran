@@ -1,10 +1,24 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import {
+  HeadContent,
+  Scripts,
+  createRootRouteWithContext,
+} from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { DirectionProvider } from '@/components/ui/direction'
+
+import type { QueryClient } from '@tanstack/react-query'
 
 import appCss from '../styles.css?url'
+import { ThemeProvider } from '@/components/theme-provider'
+import LastReadFloat from '@/components/last-read-float'
+import Footer from '@/components/footer'
+import Header from '@/components/header'
+import { NotFoundComponent } from '@/components/not-found'
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient
+}>()({
   head: () => ({
     meta: [
       {
@@ -15,7 +29,7 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: 'zQuran - Baca Quran Praktis',
       },
     ],
     links: [
@@ -27,16 +41,26 @@ export const Route = createRootRoute({
   }),
 
   shellComponent: RootDocument,
+  notFoundComponent: NotFoundComponent,
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ scrollBehavior: 'smooth' }}>
       <head>
         <HeadContent />
       </head>
       <body>
-        {children}
+        <DirectionProvider direction="rtl">
+          <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+            <div className="flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+              <LastReadFloat />
+            </div>
+          </ThemeProvider>
+        </DirectionProvider>
         <TanStackDevtools
           config={{
             position: 'bottom-right',
