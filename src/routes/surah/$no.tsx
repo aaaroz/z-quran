@@ -60,7 +60,7 @@ function RouteComponent() {
     (surahNomor: number, currentAyat: number, qariKey: string) => {
       if (surah.nomor !== surahNomor) return
       const nextAyat = surah.ayat.find((a) => a.nomorAyat === currentAyat + 1)
-      if (nextAyat?.audio.qariKey) {
+      if (nextAyat?.audio[qariKey]) {
         const nextId = `${surahNomor}-${nextAyat.nomorAyat}-${qariKey}`
         play(nextId, nextAyat.audio[qariKey], surahNomor, qariKey)
         const el = document.getElementById(`ayat-${nextAyat.nomorAyat}`)
@@ -203,5 +203,4 @@ function RouteComponent() {
       </div>
     </div>
   )
-  return <div>Hello "/surah/"!</div>
 }

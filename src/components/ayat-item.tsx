@@ -73,7 +73,7 @@ const AyatItem = ({
                       className={`rounded-md p-2 transition-colors ${
                         isAnyPlaying
                           ? 'text-primary bg-primary/10'
-                          : 'text-muted-foreground/40 hover:text-primary'
+                          : 'text-muted-foreground hover:text-primary'
                       }`}
                       aria-label="Putar audio"
                     >
@@ -88,7 +88,7 @@ const AyatItem = ({
                     </button>
                   </PopoverTrigger>
                 </TooltipTrigger>
-                <TooltipContent>Putar ayat #{nomorAyat}</TooltipContent>
+                <TooltipContent>Putar Ayat</TooltipContent>
               </Tooltip>
               <PopoverContent className="w-56 p-2" align="end">
                 <p className="text-xs font-medium text-muted-foreground mb-2 px-2">
@@ -132,16 +132,14 @@ const AyatItem = ({
                 className={`rounded-md p-2 transition-colors ${
                   isLastRead
                     ? 'text-primary bg-primary/10'
-                    : 'text-muted-foreground/40 hover:text-primary'
+                    : 'text-muted-foreground hover:text-primary'
                 }`}
                 aria-label="Tandai terakhir dibaca"
               >
                 <HugeiconsIcon className="size-4" icon={BookOpenCheck} />
               </button>
             </TooltipTrigger>
-            <TooltipContent>
-              Tandai ayat #{nomorAyat} sebagai terakhir dibaca
-            </TooltipContent>
+            <TooltipContent>Tandai Terakhir Dibaca</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger>
@@ -158,7 +156,7 @@ const AyatItem = ({
                 className={`rounded-md p-2 transition-colors ${
                   bookmarked
                     ? 'text-primary bg-primary/10'
-                    : 'text-muted-foreground/40 hover:text-primary'
+                    : 'text-muted-foreground hover:text-primary'
                 }`}
                 aria-label={bookmarked ? 'Hapus bookmark' : 'Tambah bookmark'}
               >
@@ -168,11 +166,11 @@ const AyatItem = ({
                 />
               </button>
             </TooltipTrigger>
-            <TooltipContent>Tandai ayat #{nomorAyat}</TooltipContent>
+            <TooltipContent>Simpan ke Bookmark</TooltipContent>
           </Tooltip>
         </div>
       </div>
-      <p className="arabic-text text-right text-2xl leading-[2.4] text-foreground mb-4">
+      <p className="arabic-text text-right text-3xl leading-[2.4] text-foreground mb-4">
         {teksArab}
       </p>
       {showLatin && teksLatin && (
