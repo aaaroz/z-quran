@@ -8,10 +8,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @font-face {
-  font-family: 'Uthmanic';
-  src: url('/uthmanic.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'UthmanicHafs';
+  src:
+    local('KFGQPC HAFS Uthmanic Script'),
+    url('/UthmanicHafs1Ver18.woff2') format('woff2'),
+    url('/UthmanicHafs1Ver18.ttf') format('truetype');
   font-display: swap;
 }
 
@@ -88,7 +89,7 @@
   --font-sans: 'Roboto', sans-serif;
   --font-arabic: 'Amiri', serif;
   --font-arabic-lateef: 'Lateef', serif;
-  --font-uthmanic: 'Uthmanic', serif;
+  --font-uthmanic: 'UthmanicHafs', serif;
 
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);

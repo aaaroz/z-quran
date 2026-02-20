@@ -1,18 +1,7 @@
-import type { Ayat, SurahDetail } from '@/apis/quran'
+import type { Ayat, Surah, SurahDetail } from '@/apis/quran'
 import { JUZ_MAPPING } from './constants'
 
-export interface SurahListItem {
-  nomor: number
-  nama: string
-  namaLatin: string
-  jumlahAyat: number
-  tempatTurun: string
-  arti: string
-  deskripsi: string
-  audioFull: Record<string, string>
-}
-
-export interface SurahListItemWithJuz extends SurahListItem {
+export interface SurahListItemWithJuz extends Surah {
   juz: Array<number>
 }
 
@@ -62,7 +51,7 @@ export function injectJuzToSurah(surah: SurahDetail): SurahWithJuz {
  * Inject juz array into surah list
  */
 export function injectJuzToSurahList(
-  surahList: Array<SurahListItem>,
+  surahList: Array<Surah>,
 ): Array<SurahListItemWithJuz> {
   return surahList.map((surah) => {
     const juzSet = new Set<number>()
