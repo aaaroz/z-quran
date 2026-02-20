@@ -170,6 +170,7 @@ function RouteComponent() {
             surahNomor={surah.nomor}
             surahName={surah.namaLatin}
             audio={ayat.audio}
+            juz={ayat.juz}
             showLatin={showLatin}
           />
         ))}

@@ -3,6 +3,7 @@
 @import 'shadcn/tailwind.css';
 @import '@fontsource-variable/roboto';
 @import '@fontsource/amiri';
+@import '@fontsource/lateef/700.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -78,6 +79,7 @@
 @theme inline {
   --font-sans: 'Roboto', sans-serif;
   --font-arabic: 'Amiri', serif;
+  --font-arabic-lateef: 'Lateef', serif;
 
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);

@@ -15,6 +15,8 @@ import { useBookmarkStore } from '@/stores/bookmark-store'
 import { useAudioStore } from '@/stores/audio-store'
 import { useLastReadStore } from '@/stores/last-read-store'
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
+import { AyatBadge } from './ayat-badge'
+import { Badge } from './ui/badge'
 
 const QARI_NAMES: Record<string, string> = {
   '01': 'Abdullah Al-Juhany',
@@ -34,6 +36,7 @@ interface AyatItemProps {
   surahName: string
   audio?: Record<string, string>
   showLatin?: boolean
+  juz: number
 }
 
 const AyatItem = ({
@@ -45,6 +48,7 @@ const AyatItem = ({
   surahName,
   audio,
   showLatin,
+  juz,
 }: AyatItemProps) => {
   const { toggleBookmark, isBookmarked } = useBookmarkStore()
   const { play, playingId } = useAudioStore()
@@ -60,9 +64,9 @@ const AyatItem = ({
   return (
     <div id={`ayat-${nomorAyat}`} className="group py-6">
       <div className="flex items-center justify-between mb-4">
-        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
-          {nomorAyat}
-        </span>
+        <Badge className="flex items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
+          Juz {juz}
+        </Badge>
         <div className="flex items-center gap-1">
           {audio && Object.keys(audio).length > 0 && (
             <Popover>
@@ -172,6 +176,7 @@ const AyatItem = ({
       </div>
       <p className="arabic-text text-right text-3xl leading-[2.4] text-foreground mb-4">
         {teksArab}
+        <AyatBadge number={nomorAyat} className="text-primary" />
       </p>
       {showLatin && teksLatin && (
         <p className="text-sm leading-relaxed text-primary/70 italic mb-2">

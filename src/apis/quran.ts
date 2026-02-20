@@ -1,3 +1,10 @@
+import {
+  injectJuzToSurah,
+  injectJuzToSurahList,
+  type SurahWithJuz,
+  type SurahListItemWithJuz,
+} from '@/lib/inject-juz-to-surah'
+
 const BASE_URL = 'https://equran.id/api/v2'
 
 export interface Surah {
@@ -41,16 +48,16 @@ export interface TafsirData {
   tafsir: Array<TafsirAyat>
 }
 
-export const getSurahList = async (): Promise<Array<Surah>> => {
+export const getSurahList = async (): Promise<Array<SurahListItemWithJuz>> => {
   const response = await fetch(`${BASE_URL}/surat`)
   const data = await response.json()
-  return data.data
+  return injectJuzToSurahList(data.data)
 }
 
-export const getSurahDetail = async (nomor: string): Promise<SurahDetail> => {
+export const getSurahDetail = async (nomor: string): Promise<SurahWithJuz> => {
   const response = await fetch(`${BASE_URL}/surat/${nomor}`)
   const data = await response.json()
-  return data.data
+  return injectJuzToSurah(data.data)
 }
 
 export const getSurahTafsir = async (
