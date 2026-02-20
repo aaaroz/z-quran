@@ -7,6 +7,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: 'Uthmanic';
+  src: url('/uthmanic.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.13 0.028 261.692);
@@ -80,6 +88,7 @@
   --font-sans: 'Roboto', sans-serif;
   --font-arabic: 'Amiri', serif;
   --font-arabic-lateef: 'Lateef', serif;
+  --font-uthmanic: 'Uthmanic', serif;
 
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);

@@ -18,11 +18,10 @@ export function AyatBadge({ number, className }: AyatBadgeProps) {
   return (
     <span
       className={cn(
-        'font-arabic-lateef align-baseline whitespace-nowrap [unicode-bidi:isolate]',
+        'font-uthmanic align-baseline whitespace-nowrap [unicode-bidi:isolate]',
         className,
       )}
     >
-      {'\u06DD'}
       {toArabicNumber(number)}
     </span>
   )
