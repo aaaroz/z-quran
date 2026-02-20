@@ -18,7 +18,7 @@ export function AyatBadge({ number, className }: AyatBadgeProps) {
   return (
     <span
       className={cn(
-        'font-arabic-lateef inline-flex items-center align-middle [unicode-bidi:isolate]',
+        'font-arabic-lateef align-baseline whitespace-nowrap [unicode-bidi:isolate]',
         className,
       )}
     >
