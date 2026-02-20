@@ -145,7 +145,7 @@
 
 @layer components {
   .arabic-text {
-    font-family: var(--font-arabic);
+    font-family: var(--font-uthmanic);
     direction: rtl;
     line-height: 2.2;
   }
