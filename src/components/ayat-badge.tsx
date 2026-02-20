@@ -17,10 +17,13 @@ type AyatBadgeProps = {
 export function AyatBadge({ number, className }: AyatBadgeProps) {
   return (
     <span
-      dir="rtl"
-      className={cn('font-arabic-lateef inline-flex items-center', className)}
+      className={cn(
+        'font-arabic-lateef inline-flex items-center align-middle [unicode-bidi:isolate]',
+        className,
+      )}
     >
-      ۝{toArabicNumber(number)}
+      {'\u06DD'}
+      {toArabicNumber(number)}
     </span>
   )
 }
