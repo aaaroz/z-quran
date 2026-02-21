@@ -13,7 +13,7 @@
     local('KFGQPC HAFS Uthmanic Script'),
     url('/UthmanicHafs1Ver18.woff2') format('woff2'),
     url('/UthmanicHafs1Ver18.ttf') format('truetype');
-  font-display: swap;
+  font-display: block;
 }
 
 :root {
@@ -145,7 +145,7 @@
 
 @layer components {
   .arabic-text {
-    font-family: var(--font-uthmanic);
+    font-family: var(--font-arabic);
     direction: rtl;
     line-height: 2.2;
   }

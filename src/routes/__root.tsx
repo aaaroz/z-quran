@@ -46,6 +46,20 @@ export const Route = createRootRouteWithContext<{
         rel: 'manifest',
         href: '/manifest.json',
       },
+      {
+        rel: 'preload',
+        href: '/UthmanicHafs1Ver18.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossOrigin: 'anonymous',
+      },
+      {
+        rel: 'preload',
+        href: '/UthmanicHafs1Ver18.ttf',
+        as: 'font',
+        type: 'font/ttf',
+        crossOrigin: 'anonymous',
+      },
     ],
   }),
 

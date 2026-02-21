@@ -174,7 +174,7 @@ const AyatItem = ({
           </Tooltip>
         </div>
       </div>
-      <p className="arabic-text text-right text-3xl leading-[2.4] text-foreground mb-4">
+      <p className="font-arabic text-right text-3xl leading-[2.4] text-foreground mb-4">
         {teksArab}
         <AyatBadge number={nomorAyat} className="text-primary" />
       </p>
